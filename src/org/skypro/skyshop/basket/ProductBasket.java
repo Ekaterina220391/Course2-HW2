@@ -14,6 +14,7 @@ public class ProductBasket {
         products[count] = product;
         count++;
     }
+
     public int getTotalPrice() {
         int total = 0;
         for (int i = 0; i < count; i++) {
