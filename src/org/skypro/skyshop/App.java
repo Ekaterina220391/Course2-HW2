@@ -27,20 +27,10 @@ public class App {
 
 
         System.out.println("Есть Хлеб: " + basket.contains("Хлеб"));
-
-
         System.out.println("Есть Молоко: " + basket.contains("Молоко"));
-
-
         basket.clear();
-
-
         basket.print();
-
-
         System.out.println("Стоимость: " + basket.getTotalPrice());
-
-
         System.out.println("Есть Хлеб: " + basket.contains("Хлеб"));
     }
 }
