@@ -7,7 +7,7 @@ public class ProductBasket {
     private int count;
 
     public void add(Product product) {
-        if (count >= products.length) {
+            if (count >= products.length) {
             System.out.println("Невозможно добавить продукт");
             return;
         }
@@ -18,7 +18,9 @@ public class ProductBasket {
     public int getTotalPrice() {
         int total = 0;
         for (int i = 0; i < count; i++) {
-            total += products[i].getPrice();
+            if (products[i] != null) {
+                total += products[i].getPrice();
+            }
         }
         return total;
     }
