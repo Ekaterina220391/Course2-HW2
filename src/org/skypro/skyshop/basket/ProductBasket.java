@@ -6,6 +6,7 @@ public class ProductBasket {
     private Product[] products = new Product[5];
     private int count;
 
+
     public void add(Product product) {
         boolean added = false;
         for (int i = 0; i < products.length; i++) {
