@@ -22,7 +22,7 @@ public class ProductBasket {
     }
         public int getTotalPrice () {
             int total = 0;
-            for (int i = 0; i < count; i++) {
+            for (int i = 0; i < products.length; i++) {
                 if (products[i] != null) {
                     total += products[i].getPrice();
                 }
@@ -30,19 +30,25 @@ public class ProductBasket {
             return total;
         }
 
-        public void print () {
-            if (count == 0) {
-                System.out.println("в корзине пусто");
-                return;
-            }
-            for (int i = 0; i < count; i++) {
+    public void print() {
+        boolean hasProducts = false;
+
+        for (int i = 0; i < products.length; i++) {
+            if (products[i] != null) {
                 System.out.println(products[i].getName() + ": " + products[i].getPrice());
+                hasProducts = true;
             }
-            System.out.println("Итого: " + getTotalPrice());
         }
 
+        if (!hasProducts) {
+            System.out.println("в корзине пусто");
+        } else {
+            System.out.println("Итого: " + getTotalPrice());
+        }
+    }
+
         public boolean contains (String name){
-            for (int i = 0; i < count; i++) {
+            for (int i = 0; i < products.length; i++) {
                 if (products[i].getName().equals(name)) {
                     return true;
                 }
@@ -50,11 +56,10 @@ public class ProductBasket {
             return false;
         }
 
-        public void clear () {
-            for (int i = 0; i < count; i++) {
-                products[i] = null;
-            }
-            count = 0;
+    public void clear() {
+        for (int i = 0; i < products.length; i++) {
+            products[i] = null;
+        }
         }
     }
 
