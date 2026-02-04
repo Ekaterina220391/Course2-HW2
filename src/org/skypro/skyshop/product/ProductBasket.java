@@ -1,11 +1,8 @@
-package org.skypro.skyshop.basket;
-
+package org.skypro.skyshop.product;
 import org.skypro.skyshop.product.Product;
 
 public class ProductBasket {
-    private Product[] products = new Product[5];
-
-
+    private final Product[] products = new Product[5];
 
     public void add(Product product) {
         boolean added = false;
@@ -20,22 +17,27 @@ public class ProductBasket {
             System.out.println("Невозможно добавить продукт");
         }
     }
-        public int getTotalPrice () {
-            int total = 0;
-            for (int i = 0; i < products.length; i++) {
-                if (products[i] != null) {
-                    total += products[i].getPrice();
-                }
+
+    public int getTotalPrice() {
+        int total = 0;
+        for (int i = 0; i < products.length; i++) {
+            if (products[i] != null) {
+                total += products[i].getPrice();
             }
-            return total;
         }
+        return total;
+    }
 
     public void print() {
         boolean hasProducts = false;
+        int specialCount = 0;
 
         for (int i = 0; i < products.length; i++) {
             if (products[i] != null) {
-                System.out.println(products[i].getName() + ": " + products[i].getPrice());
+                System.out.println(products[i].toString());
+                if (products[i].isSpecial()) {
+                    specialCount++;
+                }
                 hasProducts = true;
             }
         }
@@ -44,29 +46,22 @@ public class ProductBasket {
             System.out.println("в корзине пусто");
         } else {
             System.out.println("Итого: " + getTotalPrice());
+            System.out.println("Специальных товаров: " + specialCount);
         }
     }
 
-        public boolean contains (String name){
-            for (int i = 0; i < products.length; i++) {
-                if (products[i].getName().equals(name)) {
-                    return true;
-                }
+    public boolean contains(String name) {
+        for (int i = 0; i < products.length; i++) {
+            if (products[i] != null && products[i].getName().equals(name)) {
+                return true;
             }
-            return false;
         }
+        return false;
+    }
 
     public void clear() {
         for (int i = 0; i < products.length; i++) {
             products[i] = null;
         }
-        }
     }
-
-
-
-
-
-
-
-
+}
