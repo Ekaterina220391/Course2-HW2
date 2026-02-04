@@ -1,39 +1,42 @@
 package org.skypro.skyshop;
 
-import org.skypro.skyshop.basket.ProductBasket;
-import org.skypro.skyshop.product.Product;
+import org.skypro.skyshop.product.FixPriceProduct;
+import org.skypro.skyshop.product.ProductBasket;
+import org.skypro.skyshop.product.SimpleProduct;
+import org.skypro.skyshop.product.DiscountedProduct;
 
 public class App {
     public static void main(String[] args) {
         ProductBasket basket = new ProductBasket();
 
 
-        Product bread = new Product("Хлеб", 50);
-        basket.add(bread);
+        basket.add(new SimpleProduct("Хлеб", 50));
+
+        basket.add(new DiscountedProduct("Молоко", 100, 20));
+        basket.add(new DiscountedProduct("Сыр", 200, 50));
 
 
-        for (int i = 0; i < 4; i++) {
-            basket.add(new Product("Товар" + i, 100));
-        }
+        basket.add(new FixPriceProduct("Абонемент"));
+        basket.add(new FixPriceProduct("Гарантия"));
 
 
-        basket.add(new Product("Новый товар", 200));
-
-
+        System.out.println("=== ИСХОДНОЕ СОСТОЯНИЕ ===");
         basket.print();
 
 
-        System.out.println("Стоимость: " + basket.getTotalPrice());
-
-
-        System.out.println("Есть Хлеб: " + basket.contains("Хлеб"));
+        System.out.println("\n=== ПОИСК ===");
         System.out.println("Есть Молоко: " + basket.contains("Молоко"));
+        System.out.println("Есть Хлеб: " + basket.contains("Хлеб"));
+        System.out.println("Есть Яблоко: " + basket.contains("Яблоко"));
+
+
+        System.out.println("\n=== ПЕРЕПОЛНЕНИЕ ===");
+        basket.add(new SimpleProduct("6-й товар", 100));  // Ошибка!
+
+
+        System.out.println("\n=== ПОСЛЕ ОЧИСТКИ ===");
         basket.clear();
         basket.print();
-        System.out.println("Стоимость: " + basket.getTotalPrice());
-        System.out.println("Есть Хлеб: " + basket.contains("Хлеб"));
+        System.out.println("Есть Молоко: " + basket.contains("Молоко"));
     }
 }
-
-
-
