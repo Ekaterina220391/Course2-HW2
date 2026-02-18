@@ -1,26 +1,27 @@
 package org.skypro.skyshop.product;
 
- public class SimpleProduct extends Product {
-     private int price;
 
-     public SimpleProduct(String name, int price) {
-         super(name);
-         this.price = price;
-     }
+public class SimpleProduct extends Product {
+    private final int price;
 
-     @Override
-     public int getPrice() {
-         return price;
-     }
+    public SimpleProduct(String name, int price) {
+        super(name);
+        this.price = price;
+    }
 
-     @Override
-     public String toString() {
-         return name + ": " + getPrice();
-     }
+    @Override
+    public int getPrice() {
+        return price;
+    }
 
-     @Override
-     public boolean isSpecial() {
-         return false;
-     }
- }
+    @Override
+    public boolean isSpecial() {
+        return false;
+    }
+
+    @Override
+    public String toString() {
+        return getName() + ": " + getPrice();
+    }
+}
 
