@@ -1,39 +1,30 @@
 package org.skypro.skyshop;
 
-import org.skypro.skyshop.basket.ProductBasket;
-import org.skypro.skyshop.product.Product;
+import org.skypro.skyshop.article.Article;
+import org.skypro.skyshop.product.FixPriceProduct;
+import org.skypro.skyshop.product.ProductBasket;
+import org.skypro.skyshop.product.SimpleProduct;
+import org.skypro.skyshop.product.DiscountedProduct;
+import org.skypro.skyshop.article.Article;
+import java.util.Arrays;
 
 public class App {
     public static void main(String[] args) {
-        ProductBasket basket = new ProductBasket();
-
-
-        Product bread = new Product("Хлеб", 50);
-        basket.add(bread);
-
-
-        for (int i = 0; i < 4; i++) {
-            basket.add(new Product("Товар" + i, 100));
+        Article article = new Article("О молоке", "Молоко полезно...");
+        System.out.println(article.toString());
+        System.out.println(article.getStringRepresentation());
+        Article milkArticle = new Article("О молоке", "Молоко содержит кальций");
+        System.out.println("=== Article ===");
+        System.out.println(milkArticle);  // Только название + текст!
+        SearchEngine engine = new SearchEngine(10);
+        engine.add(milkArticle);
+        printResults(engine.search("молоко"));
+    }
+    public static void printResults(Searchable[] results) {
+        for (Searchable result : results) {
+            if (result != null) {
+                System.out.println(result.getStringRepresentation());
+            }
         }
-
-
-        basket.add(new Product("Новый товар", 200));
-
-
-        basket.print();
-
-
-        System.out.println("Стоимость: " + basket.getTotalPrice());
-
-
-        System.out.println("Есть Хлеб: " + basket.contains("Хлеб"));
-        System.out.println("Есть Молоко: " + basket.contains("Молоко"));
-        basket.clear();
-        basket.print();
-        System.out.println("Стоимость: " + basket.getTotalPrice());
-        System.out.println("Есть Хлеб: " + basket.contains("Хлеб"));
     }
 }
-
-
-
